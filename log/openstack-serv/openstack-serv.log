@@ -1,0 +1,40 @@
+2022-04-16 21:04:22 650 INFO  MsgInitUtils(23) content_type:null
+2022-04-16 21:04:22 677 INFO  MsgInitUtils(65) 请求报文：{}
+2022-04-16 21:04:22 678 INFO  Asserts(73) isTrue : false
+2022-04-16 21:04:22 679 ERROR CloudController(145) null com.chinaums.ysmktaln.spbillserv.common.Exception.HandleException - [code:'1001', message:'req_params为空']
+2022-04-16 21:04:22 679 INFO  CloudController(154) null 处理完成,总耗时32 
+2022-04-16 21:04:59 243 INFO  MsgInitUtils(23) content_type:null
+2022-04-16 21:04:59 243 INFO  MsgInitUtils(65) 请求报文：{}
+2022-04-16 21:04:59 243 INFO  Asserts(73) isTrue : false
+2022-04-16 21:04:59 244 ERROR CloudController(145) null com.chinaums.ysmktaln.spbillserv.common.Exception.HandleException - [code:'1001', message:'req_params为空']
+2022-04-16 21:04:59 244 INFO  CloudController(154) null 处理完成,总耗时3 
+2022-04-16 21:04:59 838 INFO  MsgInitUtils(23) content_type:null
+2022-04-16 21:04:59 839 INFO  MsgInitUtils(65) 请求报文：{}
+2022-04-16 21:04:59 839 INFO  Asserts(73) isTrue : false
+2022-04-16 21:04:59 839 ERROR CloudController(145) null com.chinaums.ysmktaln.spbillserv.common.Exception.HandleException - [code:'1001', message:'req_params为空']
+2022-04-16 21:04:59 839 INFO  CloudController(154) null 处理完成,总耗时1 
+2022-04-16 21:05:00 033 INFO  MsgInitUtils(23) content_type:null
+2022-04-16 21:05:00 033 INFO  MsgInitUtils(65) 请求报文：{}
+2022-04-16 21:05:00 034 INFO  Asserts(73) isTrue : false
+2022-04-16 21:05:00 034 ERROR CloudController(145) null com.chinaums.ysmktaln.spbillserv.common.Exception.HandleException - [code:'1001', message:'req_params为空']
+2022-04-16 21:05:00 034 INFO  CloudController(154) null 处理完成,总耗时2 
+2022-04-16 21:05:00 218 INFO  MsgInitUtils(23) content_type:null
+2022-04-16 21:05:00 219 INFO  MsgInitUtils(65) 请求报文：{}
+2022-04-16 21:05:00 219 INFO  Asserts(73) isTrue : false
+2022-04-16 21:05:00 219 ERROR CloudController(145) null com.chinaums.ysmktaln.spbillserv.common.Exception.HandleException - [code:'1001', message:'req_params为空']
+2022-04-16 21:05:00 219 INFO  CloudController(154) null 处理完成,总耗时1 
+2022-04-16 21:05:00 398 INFO  MsgInitUtils(23) content_type:null
+2022-04-16 21:05:00 398 INFO  MsgInitUtils(65) 请求报文：{}
+2022-04-16 21:05:00 398 INFO  Asserts(73) isTrue : false
+2022-04-16 21:05:00 399 ERROR CloudController(145) null com.chinaums.ysmktaln.spbillserv.common.Exception.HandleException - [code:'1001', message:'req_params为空']
+2022-04-16 21:05:00 399 INFO  CloudController(154) null 处理完成,总耗时2 
+2022-04-16 21:05:00 590 INFO  MsgInitUtils(23) content_type:null
+2022-04-16 21:05:00 590 INFO  MsgInitUtils(65) 请求报文：{}
+2022-04-16 21:05:00 590 INFO  Asserts(73) isTrue : false
+2022-04-16 21:05:00 591 ERROR CloudController(145) null com.chinaums.ysmktaln.spbillserv.common.Exception.HandleException - [code:'1001', message:'req_params为空']
+2022-04-16 21:05:00 591 INFO  CloudController(154) null 处理完成,总耗时2 
+2022-04-16 21:05:00 775 INFO  MsgInitUtils(23) content_type:null
+2022-04-16 21:05:00 775 INFO  MsgInitUtils(65) 请求报文：{}
+2022-04-16 21:05:00 776 INFO  Asserts(73) isTrue : false
+2022-04-16 21:05:00 776 ERROR CloudController(145) null com.chinaums.ysmktaln.spbillserv.common.Exception.HandleException - [code:'1001', message:'req_params为空']
+2022-04-16 21:05:00 776 INFO  CloudController(154) null 处理完成,总耗时2 
