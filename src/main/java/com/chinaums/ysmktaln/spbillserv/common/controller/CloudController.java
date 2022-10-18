@@ -118,6 +118,7 @@ public class CloudController {
    public Object queryServeId(HttpServletRequest httpServletRequest) {
       long start = System.currentTimeMillis();
       Map<String, Object> reqParam = MsgInitUtils.initRequestMap(httpServletRequest);
+//      this.logger.info("reqParam:{}", reqParam);
       Map<String, Object> respParam = new HashMap();
       String msgCrrltnId = (String)reqParam.get("msg_crrltn_id");
 
@@ -128,10 +129,12 @@ public class CloudController {
             return StringUtils.isBlank(jsonObject.getString("request_id"));
          }), HandleCode.RSP_1002, "数据基本校验不通过");
          List<JSONObject> restult = new ArrayList();
+
          req_params.stream().forEach((request_ids) -> {
             JSONObject jsonObject = new JSONObject();
             String request_id = request_ids.getString("request_id");
             CloudParam cloudParam = this.cloudService.getServIdByRequestId(request_id);
+
             Asserts.notNull(cloudParam, HandleCode.RSP_1001, "请求流水不存在");
             jsonObject.put("server_id", cloudParam.getService_id());
             jsonObject.put("status", cloudParam.getStatus());
@@ -244,6 +247,7 @@ public class CloudController {
          Asserts.hasText(server_id, HandleCode.RSP_1001, "server_id为空");
          Asserts.hasText(serve_name, HandleCode.RSP_1001, "serve_name为空");
          Asserts.hasText(request_id, HandleCode.RSP_1001, "request_id为空");
+         Asserts.hasText(msgCrrltnId, HandleCode.RSP_1001, "msgCrrltnId为空");
          Asserts.matches(cloud_type, "PUBLIC|PRIVATE", HandleCode.RSP_1001, "cloud_type类型错误");
          this.cloudService.createTpl(msgCrrltnId, request_id, server_id, serve_name, cloud_type);
          respParam.put("msg_rsp_code", "0000");

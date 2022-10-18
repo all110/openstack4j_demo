@@ -6,8 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import org.openstack4j.api.Builders;
-import org.openstack4j.api.OSClient.OSClientV2;
-import org.openstack4j.api.client.IOSClientBuilder.V2;
+import org.openstack4j.api.OSClient.OSClientV3;
+import org.openstack4j.openstack.OSFactory;
+import org.openstack4j.model.common.Identifier;
+
 import org.openstack4j.model.compute.Action;
 import org.openstack4j.model.compute.BlockDeviceMappingCreate;
 import org.openstack4j.model.compute.Image;
@@ -18,17 +20,30 @@ import org.openstack4j.model.compute.builder.BlockDeviceMappingBuilder;
 import org.openstack4j.model.network.Network;
 import org.openstack4j.model.storage.block.Volume;
 import org.openstack4j.model.storage.block.VolumeSnapshot;
-import org.openstack4j.openstack.OSFactory;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class PrivateCloudManagerImpl implements CloudManager {
    private Logger logger = LoggerFactory.getLogger(PrivateCloudManagerImpl.class);
 //   private OSClientV2 os;
-   private OSClientV2 os;
+   private OSClientV3 os;
    public PrivateCloudManagerImpl(CloudProperties cloudProperties) {
       try {
-         this.os = (OSClientV2)((V2)((V2)OSFactory.builderV2().endpoint(cloudProperties.getAuthUrl())).credentials(cloudProperties.getUserName(), cloudProperties.getPassword())).tenantName(cloudProperties.getTenantName()).authenticate();
+         //Identity (Keystone) V2
+//         this.os = (OSClientV2)((V2)((V2)OSFactory.builderV2()
+//                 .endpoint(cloudProperties.getAuthUrl()))
+//                 .credentials(cloudProperties.getUserName(), cloudProperties.getPassword()))
+//                 .tenantName(cloudProperties.getTenantName())
+//                 .authenticate();
+//         this.logger.info(cloudProperties.toString());
+         // project scoped authentication
+         this.os = OSFactory.builderV3()
+                 .endpoint(cloudProperties.getAuthUrl())
+                 .credentials(cloudProperties.getUserName(), cloudProperties.getPassword(), Identifier.byName(cloudProperties.getDomainName()))
+                 .scopeToProject(Identifier.byId(cloudProperties.getProjectId()))
+                 .authenticate();
+
          this.logger.info("私有云初始化成功");
       } catch (Exception var3) {
          this.logger.error("私有云初始化失败" + var3);
@@ -43,6 +58,17 @@ public class PrivateCloudManagerImpl implements CloudManager {
 
    public Volume createBootableVolume(String volumeName, String volumeSnapshotId) {
       return this.os.blockStorage().volumes().create((Volume)Builders.volume().name(volumeName).snapshot(volumeSnapshotId).bootable(true).build());
+
+
+//      return this.os.blockStorage().volumes()
+//              .create(Builders.volume()
+//                      .name(volumeName)
+////                      .description("Bootable install volume")
+//                      .imageRef(volumeSnapshotId)
+//                      .size(2)
+//                      .bootable(true)
+//                      .build()
+//              );
    }
 
    public Server createServerFormVolume(String serverName, String flavorId, String volumeId) {
@@ -101,6 +127,7 @@ public class PrivateCloudManagerImpl implements CloudManager {
 
    public VolumeSnapshot createSnapshot(String serverId, String snapshotName) {
       String imageId = this.os.compute().servers().createSnapshot(serverId, snapshotName);
+
       String volumeSnapshotId = (String)((Map)((ArrayList)((ArrayList)this.getImageByimageId(imageId).getMetaData().get("block_device_mapping"))).get(0)).get("snapshot_id");
       return this.getVolumeSnapshot(volumeSnapshotId);
    }
@@ -110,6 +137,9 @@ public class PrivateCloudManagerImpl implements CloudManager {
    }
 
    public Image getImageByimageId(String imageId) {
+//      Image a=this.os.compute().images().get(imageId);
+//      this.logger.info("image:{}",a);
+//      return a;
       return this.os.compute().images().get(imageId);
    }
 
