@@ -121,7 +121,9 @@
             <groupId>com.github.openstack4j.core</groupId>
             <artifactId>openstack4j</artifactId>
             <version>${openstack4j.version}</version>
+            <classifier>withdeps</classifier>
         </dependency>
+
         <!--configuration-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

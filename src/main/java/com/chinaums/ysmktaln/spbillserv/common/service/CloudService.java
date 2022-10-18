@@ -174,7 +174,7 @@ public class CloudService {
       }
 
       this.logger.info("{}sql：{}", msgId, sql);
-      return this.jdbcTemplate.update(sql, args, types);
+         return this.jdbcTemplate.update(sql, args, types);
    }
 
    public void createTpl(String msgId, String requestId, String servId, String servName, String cloudType) {
@@ -189,7 +189,7 @@ public class CloudService {
                VolumeSnapshot volumeSnapshot = cloudManager.createSnapshot(servId, servName);
                CloudService.this.logger.info("{} 服务id:{} requestId:{} 更新结果{}", new Object[]{msgId, requestId, CloudService.this.updateServId(volumeSnapshot.getId(), requestId, "DONE")});
             } catch (Exception var3) {
-               CloudService.this.logger.error("{}{}", msgId, var3);
+               CloudService.this.logger.error("{},{}", msgId, var3);
             }
 
          }
